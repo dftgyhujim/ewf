@@ -57,3 +57,85 @@
 
 ![image](https://github.com/user-attachments/assets/55cd797c-9c6e-46ed-b243-14ce6ed80a56)
 
+10. Установка git
+
+`sudo yum install git`
+
+![image](https://github.com/user-attachments/assets/a5595a4a-f962-4750-8fb0-b0e2b6e90883)
+
+Этот код скачивает содержимое репозитория skl256/grafana_stack_for_docker
+
+`sudo git clone https://github.com/skl256/grafana_stack_for_docker.git`
+
+Заходит в папку - cd
+
+`cd grafana_stack_for_docker`
+
+cd .. - возвращает в папку выше
+
+![image](https://github.com/user-attachments/assets/84ca8ad7-d109-4624-9dee-1bfd5946fc57)
+
+Cоздаем папки двумя разными способами
+
+`sudo mkdir -p /mnt/common_volume/swarm/grafana/config`
+
+`sudo mkdir -p /mnt/common_volume/grafana/{grafana-config,grafana-data,prometheus-data,loki-data,promtail-data}`
+
+Выдаем права
+
+`sudo chown -R $(id -u):$(id -g) {/mnt/common_volume/swarm/grafana/config,/mnt/common_volume/grafana}`
+
+Создаем файл
+
+`sudo touch /mnt/common_volume/grafana/grafana-config/grafana.ini`
+
+Копирование файлов
+
+`sudo cp config/* /mnt/common_volume/swarm/grafana/config/`
+
+Переименовывание файла
+
+`sudo mv grafana.yaml docker-compose.yaml`
+
+![image](https://github.com/user-attachments/assets/2f6443f9-282f-40c0-9f86-699f6c4f4bd0)
+
+Собрать докер (нужно запускать из папки где docker-compose.yaml)
+
+`sudo docker compose up -d`
+
+Опустить докер - sudo docker compose stop
+
+![image](https://github.com/user-attachments/assets/1680e53d-45eb-4218-ac93-a430d86dd96f)
+![image](https://github.com/user-attachments/assets/dfd8b24a-a43e-4789-908f-cc6b092164ab)
+
+
+# Начинаем чистку файлов
+
+Команда открывает файл docker-compose.yaml в текстовом редакторе vi с правами суперпользователя
+
+`sudo vi docker-compose.yaml`
+
+Что-бы что-то изменить в тесковом редакторе нужно нажать insert на клавиатуре
+
+Затем в docker-compose нужно вставить node-exporter и удалить ненужные файлы (можно вставить готовый докер)
+
+![image](https://github.com/user-attachments/assets/259220f9-0dc4-4296-b0d2-6fbbdc34cf6b)
+
+выйти не сохраняясь из vim - `esc -> :q!`
+
+выйти сохраняясь из vim - `esc -> :wq!`
+
+Заходим в другую папку 
+
+`cd /mnt/common_volume/swarm/grafana/config/`
+
+Открываем файл prometheus.yaml в текстовом редакторе vi с правами суперпользователя
+
+`sudo vi prometheus.yaml`
+
+![image](https://github.com/user-attachments/assets/42c4880b-e56f-45a1-9077-8bc4972354be)
+
+Далее нужно исправить targets: на exporter:9100
+
+![image](https://github.com/user-attachments/assets/850c7813-b767-4cb8-a01b-5c57e168a6fc)
+
