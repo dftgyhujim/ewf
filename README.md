@@ -109,7 +109,7 @@ Cоздаем папки двумя разными способами
 ![image](https://github.com/user-attachments/assets/dfd8b24a-a43e-4789-908f-cc6b092164ab)
 
 
-# Начинаем чистку файлов
+# Делаем чистку файлов
 
 Команда открывает файл docker-compose.yaml в текстовом редакторе vi с правами суперпользователя
 
@@ -119,7 +119,7 @@ Cоздаем папки двумя разными способами
 
 Затем в docker-compose нужно вставить node-exporter и удалить ненужные файлы (можно вставить готовый докер)
 
-![image](https://github.com/user-attachments/assets/259220f9-0dc4-4296-b0d2-6fbbdc34cf6b)
+![image](https://github.com/user-attachments/assets/1f763083-5811-41c8-b300-ee14d416867b)
 
 выйти не сохраняясь из vim - `esc -> :q!`
 
@@ -133,9 +133,8 @@ Cоздаем папки двумя разными способами
 
 `sudo vi prometheus.yaml`
 
-![image](https://github.com/user-attachments/assets/42c4880b-e56f-45a1-9077-8bc4972354be)
-
 Далее нужно исправить targets: на exporter:9100
 
-![image](https://github.com/user-attachments/assets/850c7813-b767-4cb8-a01b-5c57e168a6fc)
+![image](https://github.com/user-attachments/assets/0d2f1f13-dc27-4d99-9bcf-466e2674d5a4)
 
+# Grafana на сайте
